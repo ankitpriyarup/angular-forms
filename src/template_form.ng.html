@@ -2,69 +2,39 @@
   <!-- First Name -->
   <div class="form-field">
     <label for="name">First Name</label>
-    <input
-      [(ngModel)]="formData.firstName"
-      name="first-name"
-      type="text"
-      id="first-name"
-      placeholder="Enter your first name"
-    />
+    <input type="text" id="first-name" placeholder="Enter your first name" />
   </div>
 
   <!-- Last Name -->
   <div class="form-field">
     <label for="last-name">Last Name</label>
-    <input
-      [(ngModel)]="formData.lastName"
-      name="last-name"
-      type="text"
-      id="last-name"
-      placeholder="Enter your last name"
-    />
+    <input type="text" id="last-name" placeholder="Enter your last name" />
   </div>
 
   <!-- Nick Name -->
   <div class="form-field">
     <label for="nickname">Nickname</label>
-    <input
-      [(ngModel)]="formData.nickName"
-      name="nick-name"
-      type="text"
-      id="nickname"
-      placeholder="Come up with a nickname"
-    />
+    <input type="text" id="nickname" placeholder="Come up with a nickname" />
   </div>
 
   <!-- Email -->
   <div class="form-field">
     <label for="email">Email</label>
-    <input
-      [(ngModel)]="formData.email"
-      name="email"
-      type="email"
-      id="email"
-      placeholder="Provide your email"
-    />
+    <input type="email" id="email" placeholder="Provide your email" />
   </div>
 
   <!-- Year of Birth & Passport -->
   <div class="form-field-inline-group">
     <div class="form-field--small">
       <label for="year-of-birth">Year of birth</label>
-      <select
-        [(ngModel)]="formData.yearOfBirth"
-        id="year-of-birth"
-        name="year-of-birth"
-      >
+      <select id="year-of-birth">
         <option *ngFor="let year of years" [value]="year">{{year}}</option>
       </select>
     </div>
     <div class="form-field--small">
       <label for="passport">Passport Number</label>
       <input
-        [(ngModel)]="formData.passportNumber"
         pattern="^[A-Z]{2}[0-9]{6}$"
-        name="passport"
         type="text"
         id="passport"
         placeholder="Provide Passport Data"
@@ -77,33 +47,15 @@
     <legend>Address</legend>
     <div class="form-field">
       <label for="street">Street</label>
-      <input
-        [(ngModel)]="formData.street"
-        name="street"
-        type="text"
-        id="street"
-        placeholder="Street"
-      />
+      <input type="text" id="street" placeholder="Street" />
     </div>
     <div class="form-field">
       <label for="city">City</label>
-      <input
-        [(ngModel)]="formData.city"
-        name="city"
-        type="text"
-        id="city"
-        placeholder="City"
-      />
+      <input type="text" id="city" placeholder="City" />
     </div>
     <div class="form-field">
       <label for="post-code">Post code</label>
-      <input
-        [(ngModel)]="formData.postCode"
-        name="post-code"
-        type="text"
-        id="post-code"
-        placeholder="Post Code"
-      />
+      <input type="text" id="post-code" placeholder="Post Code" />
     </div>
   </fieldset>
 
