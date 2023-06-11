@@ -29,4 +29,16 @@ export class App {
   selection = 0;
 }
 
+export interface UserInfo {
+  firstName: string;
+  lastName: string;
+  nickName: string;
+  email: string;
+  yearOfBirth: number;
+  passportNumber: string;
+  street: string;
+  city: string;
+  postCode: number;
+}
+
 bootstrapApplication(App);
