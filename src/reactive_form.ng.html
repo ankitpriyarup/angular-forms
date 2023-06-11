@@ -1,41 +1,61 @@
-<form class="form">
+<form class="form" [formGroup]="form">
   <!-- First Name -->
   <div class="form-field">
     <label for="name">First Name</label>
-    <input type="text" id="first-name" placeholder="Enter your first name" />
+    <input
+      formControlName="firstName"
+      type="text"
+      id="first-name"
+      placeholder="Enter your first name"
+    />
   </div>
 
   <!-- Last Name -->
   <div class="form-field">
     <label for="last-name">Last Name</label>
-    <input type="text" id="last-name" placeholder="Enter your last name" />
+    <input
+      formControlName="lastName"
+      type="text"
+      id="last-name"
+      placeholder="Enter your last name"
+    />
   </div>
 
   <!-- Nick Name -->
   <div class="form-field">
     <label for="nickname">Nickname</label>
-    <input type="text" id="nickname" placeholder="Come up with a nickname" />
+    <input
+      formControlName="nickName"
+      type="text"
+      id="nickname"
+      placeholder="Come up with a nickname"
+    />
   </div>
 
   <!-- Email -->
   <div class="form-field">
     <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Provide your email" />
+    <input
+      formControlName="email"
+      type="email"
+      id="email"
+      placeholder="Provide your email"
+    />
   </div>
 
   <!-- Year of Birth & Passport -->
   <div class="form-field-inline-group">
     <div class="form-field--small">
       <label for="year-of-birth">Year of birth</label>
-      <select id="year-of-birth" name="year-of-birth">
+      <select formControlName="yearOfBirth" id="year-of-birth">
         <option *ngFor="let year of years" [value]="year">{{year}}</option>
       </select>
     </div>
     <div class="form-field--small">
       <label for="passport">Passport Number</label>
       <input
+        formControlName="passportNumber"
         pattern="^[A-Z]{2}[0-9]{6}$"
-        name="passport"
         type="text"
         id="passport"
         placeholder="Provide Passport Data"
@@ -44,20 +64,25 @@
   </div>
 
   <!-- Address -->
-  <fieldset>
+  <fieldset formGroupName="address">
     <legend>Address</legend>
     <div class="form-field">
       <label for="street">Street</label>
-      <input name="street" type="text" id="street" placeholder="Street" />
+      <input
+        formControlName="street"
+        type="text"
+        id="street"
+        placeholder="Street"
+      />
     </div>
     <div class="form-field">
       <label for="city">City</label>
-      <input name="city" type="text" id="city" placeholder="City" />
+      <input formControlName="city" type="text" id="city" placeholder="City" />
     </div>
     <div class="form-field">
       <label for="post-code">Post code</label>
       <input
-        name="post-code"
+        formControlName="postCode"
         type="text"
         id="post-code"
         placeholder="Post Code"
@@ -65,5 +90,30 @@
     </div>
   </fieldset>
 
+  <!-- Password -->
+  <fieldset formGroupName="password">
+    <legend>Password</legend>
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-field">
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        id="confirm-password"
+        placeholder="Confirm Password"
+      />
+    </div>
+  </fieldset>
+
   <button>Save</button>
 </form>
+
+<pre>{{form.value | json}}</pre>

@@ -39,7 +39,7 @@ import { ReactiveForm } from './reactive_form';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  selection = 0;
+  selection = 1;
   globalSearch = '';
 }
 
