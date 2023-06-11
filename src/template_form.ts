@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { UserInfo } from './main';
 
 @Component({
   selector: 'template-form',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: 'template_form.ng.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
