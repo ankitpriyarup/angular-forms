@@ -4,17 +4,18 @@ import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { TemplateForm } from './template_form';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'my-app',
   standalone: true,
-  imports: [CommonModule, TemplateForm, FormsModule],
+  imports: [CommonModule, TemplateForm, FormsModule, HttpClientModule],
   styles: [
     '.highlight { color: blue; text-decoration: underline }',
     '.header { display: flex; gap: 8px; align-items: center; margin-bottom: 12px }',
     '.header > * { margin: 0 }',
     'a { cursor: pointer }',
-    '.search { position: absolute; bottom: 0; left: 0; right: 0; margin: 4px; }',
+    '.search { position: fixed; bottom: 0; left: 0; right: 0; margin: 4px; }',
   ],
   template: `
     <div class="header">
@@ -44,6 +45,8 @@ export interface UserInfo {
   street: string;
   city: string;
   postCode: number;
+  password: string;
+  confirmPassword: string;
 }
 
 bootstrapApplication(App);

@@ -45,3 +45,10 @@ button {
   color: red;
   padding-left: 4px;
 }
+
+.info {
+  align-self: center;
+  font-size: 0.7rem;
+  color: orange;
+  padding-left: 4px;
+}

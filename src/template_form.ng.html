@@ -1,4 +1,9 @@
-<form class="form" #form="ngForm" (ngSubmit)="onSubmitForm(form, $event)">
+<form
+  class="form"
+  #form="ngForm"
+  (reset)="onReset(form, $event)"
+  (ngSubmit)="onSubmitForm(form, $event)"
+>
   <!-- First Name -->
   <div class="form-field">
     <label for="name">First Name</label>
@@ -54,6 +59,7 @@
       required
       minlength="3"
       pattern="^[\w.]+$"
+      uniqueNickname
       name="nick-name"
       type="text"
       id="nickname"
@@ -67,6 +73,13 @@
     </div>
     <div *ngIf="nickName.dirty && nickName.hasError('pattern')" class="error">
       Not a valid nickname
+    </div>
+    <div *ngIf="nickName.pending" class="info">Checking</div>
+    <div
+      *ngIf="nickName.dirty && nickName.hasError('uniqueNickname')"
+      class="error"
+    >
+      Nickname already taken
     </div>
   </div>
 
@@ -95,6 +108,7 @@
     <div class="form-field--small">
       <label for="year-of-birth">Year of birth</label>
       <select
+        #yearOfBirth="ngModel"
         [(ngModel)]="formData.yearOfBirth"
         required
         id="year-of-birth"
@@ -109,6 +123,7 @@
         [(ngModel)]="formData.passportNumber"
         #passport="ngModel"
         pattern="^[A-Z]{2}[0-9]{6}$"
+        [required]="isAdult(yearOfBirth.value)"
         name="passport"
         type="text"
         id="passport"
@@ -116,6 +131,9 @@
       />
       <div *ngIf="passport.dirty && passport.hasError('pattern')" class="error">
         Not a valid passport
+      </div>
+      <div *ngIf="passport.hasError('required')" class="error">
+        Passport is required for an adult
       </div>
     </div>
   </div>
@@ -158,7 +176,44 @@
     </div>
   </fieldset>
 
-  <button [disabled]="form.invalid">Save</button>
+  <fieldset
+    #password="ngModelGroup"
+    ngModelGroup="password"
+    passwordShouldMatch
+  >
+    <legend>Password</legend>
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input
+        [(ngModel)]="formData.password"
+        required
+        name="password"
+        type="password"
+        id="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-field">
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        [(ngModel)]="formData.confirmPassword"
+        required
+        name="confirm-password"
+        type="password"
+        id="confirm-password"
+        placeholder="Confirm Password"
+      />
+    </div>
+    <div
+      *ngIf="password.dirty && password.hasError('passwordShouldMatch')"
+      class="error"
+    >
+      Password should match!
+    </div>
+  </fieldset>
+
+  <button [disabled]="form.invalid || form.pending">Save</button>
+  <button style="margin-right: 8px" type="reset">Reset</button>
 </form>
 
 <pre>{{formData | json}}</pre>
