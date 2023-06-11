@@ -5,11 +5,18 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { TemplateForm } from './template_form';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveForm } from './reactive_form';
 
 @Component({
   selector: 'my-app',
   standalone: true,
-  imports: [CommonModule, TemplateForm, FormsModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    TemplateForm,
+    ReactiveForm,
+    FormsModule,
+    HttpClientModule,
+  ],
   styles: [
     '.highlight { color: blue; text-decoration: underline }',
     '.header { display: flex; gap: 8px; align-items: center; margin-bottom: 12px }',
@@ -25,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     </div>
 
     <template-form *ngIf="selection === 0"></template-form>
+    <reactive-form *ngIf="selection === 1"></reactive-form>
 
     <input class="search" [(ngModel)]="globalSearch" placeholder="Search">
   `,

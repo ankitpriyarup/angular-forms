@@ -51,7 +51,6 @@ export class TemplateForm {
     queueMicrotask(() => {
       // formDir.values is only populated after we queue micro
       // tasks because setControl method is itself a microtask promise.
-      console.log(this.formDir.value);
       this.initialFormValues = this.formDir.value;
     });
   }
