@@ -1,0 +1,33 @@
+.form-field {
+  margin: 12px 0;
+  display: flex;
+  width: 100%;
+}
+
+.form-field > input {
+  flex-grow: 1;
+}
+
+.form-field > label,
+.form-field--small > label {
+  display: inline-block;
+  width: 123px;
+}
+
+.form-field-inline-group {
+  display: flex;
+  gap: 42px;
+}
+
+.form-field--small {
+  width: fit-content;
+  margin-right: 12px;
+}
+
+fieldset {
+  margin: 12px 0;
+}
+
+button {
+  float: right;
+}
