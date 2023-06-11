@@ -6,6 +6,7 @@ import { TemplateForm } from './template_form';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveForm } from './reactive_form';
+import { CustomPicker } from './custom_picker';
 
 @Component({
   selector: 'my-app',
@@ -15,6 +16,7 @@ import { ReactiveForm } from './reactive_form';
     TemplateForm,
     ReactiveForm,
     FormsModule,
+    CustomPicker,
     HttpClientModule,
   ],
   styles: [
@@ -28,11 +30,13 @@ import { ReactiveForm } from './reactive_form';
     <div class="header">
       <h2 style="margin-right:12px">Angular Forms</h2>
       <a [class.highlight]="selection === 0" (click)="selection = 0">Template Form</a> |
-      <a [class.highlight]="selection === 1" (click)="selection = 1">Reactive Form</a>
+      <a [class.highlight]="selection === 1" (click)="selection = 1">Reactive Form</a> |
+      <a [class.highlight]="selection === 2" (click)="selection = 2">Custom Picker</a>
     </div>
 
     <template-form *ngIf="selection === 0"></template-form>
     <reactive-form *ngIf="selection === 1"></reactive-form>
+    <custom-picker *ngIf="selection === 2"></custom-picker>
 
     <div style="height:100px"></div>
 
@@ -41,7 +45,7 @@ import { ReactiveForm } from './reactive_form';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  selection = 1;
+  selection = 2;
   globalSearch = '';
 }
 
