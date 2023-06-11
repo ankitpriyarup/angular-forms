@@ -63,12 +63,12 @@ button {
   float: none;
   width: 100%;
   height: 32px;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 form.review {
   background-color: #dfdfdf;
-  padding: 16px 8px;
+  padding: 12px;
   border-radius: 10px;
 }
 
@@ -90,4 +90,26 @@ button:hover {
 button:active {
   background-color: #faa415;
   border: #ffc15a 1px solid;
+}
+
+.review-textarea {
+  border-radius: 6px;
+  background-color: white;
+  padding: 0px 8px;
+  margin-top: 8px;
+  min-height: 74px;
+  box-sizing: border-box;
+}
+.review-textarea h3 {
+  margin-bottom: 8px;
+  padding-top: 8px;
+}
+.review-textarea h3:empty:before {
+  content: attr(data-placeholder);
+  opacity: 0.6;
+}
+.review-textarea p:empty:before,
+.review-textarea div:empty:before {
+  content: attr(data-placeholder);
+  opacity: 0.6;
 }
