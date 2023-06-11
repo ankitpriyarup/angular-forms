@@ -1,14 +1,36 @@
-<form class="form">
+<form class="form" #form="ngForm" (ngSubmit)="onSubmitForm(form, $event)">
   <!-- First Name -->
   <div class="form-field">
     <label for="name">First Name</label>
     <input
       [(ngModel)]="formData.firstName"
+      #firstName="ngModel"
+      required
+      minlength="2"
+      banWords="test"
       name="first-name"
       type="text"
       id="first-name"
       placeholder="Enter your first name"
     />
+    <div
+      *ngIf="firstName.dirty && firstName.hasError('required')"
+      class="error"
+    >
+      Required
+    </div>
+    <div
+      *ngIf="firstName.dirty && firstName.hasError('minlength')"
+      class="error"
+    >
+      Min length is 2
+    </div>
+    <div
+      *ngIf="firstName.dirty && firstName.hasError('banWords')"
+      class="error"
+    >
+      Word {{firstName.getError('banWords').bannedWord}} is banned
+    </div>
   </div>
 
   <!-- Last Name -->
@@ -28,11 +50,24 @@
     <label for="nickname">Nickname</label>
     <input
       [(ngModel)]="formData.nickName"
+      #nickName="ngModel"
+      required
+      minlength="3"
+      pattern="^[\w.]+$"
       name="nick-name"
       type="text"
       id="nickname"
       placeholder="Come up with a nickname"
     />
+    <div *ngIf="nickName.dirty && nickName.hasError('required')" class="error">
+      Required
+    </div>
+    <div *ngIf="nickName.dirty && nickName.hasError('minlength')" class="error">
+      Min length is 3
+    </div>
+    <div *ngIf="nickName.dirty && nickName.hasError('pattern')" class="error">
+      Not a valid nickname
+    </div>
   </div>
 
   <!-- Email -->
@@ -40,11 +75,19 @@
     <label for="email">Email</label>
     <input
       [(ngModel)]="formData.email"
+      #email="ngModel"
+      email
       name="email"
       type="email"
       id="email"
       placeholder="Provide your email"
     />
+    <div *ngIf="email.dirty && email.hasError('required')" class="error">
+      Required
+    </div>
+    <div *ngIf="email.dirty && email.hasError('email')" class="error">
+      Not a valid email
+    </div>
   </div>
 
   <!-- Year of Birth & Passport -->
@@ -53,6 +96,7 @@
       <label for="year-of-birth">Year of birth</label>
       <select
         [(ngModel)]="formData.yearOfBirth"
+        required
         id="year-of-birth"
         name="year-of-birth"
       >
@@ -63,22 +107,27 @@
       <label for="passport">Passport Number</label>
       <input
         [(ngModel)]="formData.passportNumber"
+        #passport="ngModel"
         pattern="^[A-Z]{2}[0-9]{6}$"
         name="passport"
         type="text"
         id="passport"
         placeholder="Provide Passport Data"
       />
+      <div *ngIf="passport.dirty && passport.hasError('pattern')" class="error">
+        Not a valid passport
+      </div>
     </div>
   </div>
 
   <!-- Address -->
-  <fieldset>
+  <fieldset ngModelGroup="address">
     <legend>Address</legend>
     <div class="form-field">
       <label for="street">Street</label>
       <input
         [(ngModel)]="formData.street"
+        required
         name="street"
         type="text"
         id="street"
@@ -89,6 +138,7 @@
       <label for="city">City</label>
       <input
         [(ngModel)]="formData.city"
+        required
         name="city"
         type="text"
         id="city"
@@ -99,6 +149,7 @@
       <label for="post-code">Post code</label>
       <input
         [(ngModel)]="formData.postCode"
+        required
         name="post-code"
         type="text"
         id="post-code"
@@ -107,7 +158,7 @@
     </div>
   </fieldset>
 
-  <button>Save</button>
+  <button [disabled]="form.invalid">Save</button>
 </form>
 
 <pre>{{formData | json}}</pre>

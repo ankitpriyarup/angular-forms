@@ -3,16 +3,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { TemplateForm } from './template_form';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
   standalone: true,
-  imports: [CommonModule, TemplateForm],
+  imports: [CommonModule, TemplateForm, FormsModule],
   styles: [
     '.highlight { color: blue; text-decoration: underline }',
     '.header { display: flex; gap: 8px; align-items: center; margin-bottom: 12px }',
     '.header > * { margin: 0 }',
     'a { cursor: pointer }',
+    '.search { position: absolute; bottom: 0; left: 0; right: 0; margin: 4px; }',
   ],
   template: `
     <div class="header">
@@ -22,11 +24,14 @@ import { TemplateForm } from './template_form';
     </div>
 
     <template-form *ngIf="selection === 0"></template-form>
+
+    <input class="search" [(ngModel)]="globalSearch" placeholder="Search">
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   selection = 0;
+  globalSearch = '';
 }
 
 export interface UserInfo {

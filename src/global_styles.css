@@ -31,3 +31,17 @@ fieldset {
 button {
   float: right;
 }
+
+.ng-valid.ng-dirty:not([ngModelGroup]):not(form) {
+  border: 2px solid green;
+}
+.ng-invalid.ng-dirty:not([ngModelGroup]):not(form) {
+  border: 2px solid red;
+}
+
+.error {
+  align-self: center;
+  font-size: 0.7rem;
+  color: red;
+  padding-left: 4px;
+}
