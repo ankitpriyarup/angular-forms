@@ -8,4 +8,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: 'reactive_form.ng.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReactiveForm {}
+export class ReactiveForm {
+  protected readonly years: number[] = [];
+
+  constructor() {
+    const now = new Date().getUTCFullYear();
+    this.years = Array(now - (now - 40))
+      .fill('')
+      .map((v, idx) => now - idx);
+  }
+}
