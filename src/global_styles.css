@@ -52,3 +52,8 @@ button {
   color: orange;
   padding-left: 4px;
 }
+
+.control-container {
+  display: flex;
+  gap: 8px;
+}

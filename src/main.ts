@@ -34,6 +34,8 @@ import { ReactiveForm } from './reactive_form';
     <template-form *ngIf="selection === 0"></template-form>
     <reactive-form *ngIf="selection === 1"></reactive-form>
 
+    <div style="height:100px"></div>
+
     <input class="search" [(ngModel)]="globalSearch" placeholder="Search">
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
