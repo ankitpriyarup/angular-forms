@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import '@polymer/paper-input/paper-textarea';
+import { EditableContentValueAccessor } from './editable_content_accessor';
 
 @Component({
   selector: 'custom-picker',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, EditableContentValueAccessor],
   template: `
   <form [formGroup]="form" class="review" (ngSubmit)="onSubmit()">
     <h2 class="review-head">Rate us</h2>
@@ -26,9 +27,7 @@ import '@polymer/paper-input/paper-textarea';
     </paper-textarea>
     -->
 
-    <div class="review-textarea" contenteditable>
-      <h3 data-placeholder="Title..."></h3>
-      <p data-placeholder="Describe your rating"></p>
+    <div class="review-textarea" contenteditable formControlName="reviewText">
     </div>
     <button type="submit" class="save">Save</button>
   </form>
