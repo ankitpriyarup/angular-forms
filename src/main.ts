@@ -29,9 +29,9 @@ import { CustomPicker } from './custom_picker';
   template: `
     <div class="header">
       <h2 style="margin-right:12px">Angular Forms</h2>
-      <a [class.highlight]="selection === 0" (click)="selection = 0">Template Form</a> |
-      <a [class.highlight]="selection === 1" (click)="selection = 1">Reactive Form</a> |
-      <a [class.highlight]="selection === 2" (click)="selection = 2">Custom Picker</a>
+      <a [class.highlight]="selection === 0" (click)="select(0)">Template Form</a> |
+      <a [class.highlight]="selection === 1" (click)="select(1)">Reactive Form</a> |
+      <a [class.highlight]="selection === 2" (click)="select(2)">Custom Picker</a>
     </div>
 
     <template-form *ngIf="selection === 0"></template-form>
@@ -47,6 +47,15 @@ import { CustomPicker } from './custom_picker';
 export class App {
   selection = 0;
   globalSearch = '';
+
+  constructor() {
+    this.selection = Number(localStorage.getItem('selection')) ?? 0;
+  }
+
+  select(num: number) {
+    this.selection = num;
+    localStorage.setItem('selection', num.toString());
+  }
 }
 
 export interface UserInfo {
