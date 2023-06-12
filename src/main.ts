@@ -45,7 +45,7 @@ import { CustomPicker } from './custom_picker';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  selection = 2;
+  selection = 0;
   globalSearch = '';
 }
 
